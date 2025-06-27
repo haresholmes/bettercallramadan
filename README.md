@@ -4,7 +4,7 @@ A modern, Gen Z-targeted yet professional website for Better Call Ramadan, a pre
 
 ## 🚀 Live Demo
 
-Visit the live website: [bettercallramadan.github.io](https://bettercallramadan.github.io)
+Visit the live website: [www.bettercallramadan.com](https://www.bettercallramadan.com)
 
 ## 🌟 Features
 
@@ -110,8 +110,46 @@ This website is configured for automatic deployment to GitHub Pages using GitHub
    - The workflow will automatically deploy your site
 
 4. **Access Your Site**:
-   - Your site will be available at: `https://yourusername.github.io/bettercallramadan`
-   - Or with a custom domain if configured
+   - Your site will be available at: `https://www.bettercallramadan.com`
+   - GitHub Pages will automatically serve from your custom domain
+
+### DNS Configuration Required
+
+To use your custom domain `www.bettercallramadan.com`, you need to configure DNS records with your domain provider:
+
+1. **CNAME Record** (Recommended):
+   ```
+   Type: CNAME
+   Name: www
+   Value: yourusername.github.io
+   ```
+
+2. **Alternative A Records** (if CNAME not supported):
+   ```
+   Type: A
+   Name: @
+   Value: 185.199.108.153
+   Value: 185.199.109.153
+   Value: 185.199.110.153
+   Value: 185.199.111.153
+   ```
+
+3. **CNAME for www subdomain**:
+   ```
+   Type: CNAME
+   Name: www
+   Value: yourusername.github.io
+   ```
+
+### Custom Domain Setup Steps
+
+1. **Configure DNS** (as shown above)
+2. **Push CNAME file** (already included in this repository)
+3. **GitHub Pages Settings**:
+   - Go to repository Settings → Pages
+   - Your custom domain should appear automatically
+   - Enable "Enforce HTTPS" (recommended)
+4. **Verification**: DNS propagation can take 24-48 hours
 
 ### Automatic Deployment
 
@@ -119,13 +157,7 @@ The `.github/workflows/deploy.yml` file handles automatic deployment:
 - Triggers on every push to the `main` branch
 - Deploys the static files directly to GitHub Pages
 - No build process needed (pure HTML/CSS/JS)
-
-### Custom Domain (Optional)
-
-To use a custom domain:
-1. Add a `CNAME` file with your domain name
-2. Configure DNS settings with your domain provider
-3. Enable "Enforce HTTPS" in repository settings
+- Custom domain configured via CNAME file
 
 ## 📱 Responsive Breakpoints
 

@@ -2,6 +2,10 @@
 
 A modern, Gen Z-targeted yet professional website for Better Call Ramadan, a premier law firm based in Dubai. Built with HTML5, CSS3, and vanilla JavaScript.
 
+## 🚀 Live Demo
+
+Visit the live website: [bettercallramadan.github.io](https://bettercallramadan.github.io)
+
 ## 🌟 Features
 
 - **Modern Design**: Clean, professional layout with Gen Z appeal
@@ -11,6 +15,7 @@ A modern, Gen Z-targeted yet professional website for Better Call Ramadan, a pre
 - **Custom Logo**: SVG-based logo design
 - **Performance Optimized**: Fast loading with optimized assets
 - **SEO Friendly**: Proper meta tags and semantic HTML
+- **GitHub Pages Ready**: Automated deployment via GitHub Actions
 
 ## 🎨 Design Highlights
 
@@ -80,6 +85,48 @@ The logo is created using SVG in the HTML. You can:
 - Replace with an external SVG file
 - Use a different logo format
 
+## 🚀 Deployment to GitHub Pages
+
+This website is configured for automatic deployment to GitHub Pages using GitHub Actions.
+
+### Setup Instructions
+
+1. **Create a GitHub Repository**:
+   ```bash
+   # If you haven't already, create a new repository on GitHub
+   # Then connect your local repository:
+   git remote add origin https://github.com/yourusername/bettercallramadan.git
+   ```
+
+2. **Push to GitHub**:
+   ```bash
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages**:
+   - Go to your repository on GitHub
+   - Navigate to Settings → Pages
+   - Under "Source", select "GitHub Actions"
+   - The workflow will automatically deploy your site
+
+4. **Access Your Site**:
+   - Your site will be available at: `https://yourusername.github.io/bettercallramadan`
+   - Or with a custom domain if configured
+
+### Automatic Deployment
+
+The `.github/workflows/deploy.yml` file handles automatic deployment:
+- Triggers on every push to the `main` branch
+- Deploys the static files directly to GitHub Pages
+- No build process needed (pure HTML/CSS/JS)
+
+### Custom Domain (Optional)
+
+To use a custom domain:
+1. Add a `CNAME` file with your domain name
+2. Configure DNS settings with your domain provider
+3. Enable "Enforce HTTPS" in repository settings
+
 ## 📱 Responsive Breakpoints
 
 - **Mobile**: < 768px
@@ -119,23 +166,6 @@ The logo is created using SVG in the HTML. You can:
 - **Medium**: `0 4px 6px -1px rgb(0 0 0 / 0.1)`
 - **Large**: `0 10px 15px -3px rgb(0 0 0 / 0.1)`
 
-## 🚀 Deployment
-
-### GitHub Pages
-1. Push code to GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Select source branch (usually `main`)
-
-### Netlify
-1. Connect your GitHub repository
-2. Deploy automatically on push
-3. Forms will work out of the box
-
-### Vercel
-1. Import your GitHub repository
-2. Deploy with zero configuration
-3. Automatic HTTPS and CDN
-
 ## 📞 Support
 
 For questions or customization requests, contact:
@@ -148,4 +178,4 @@ This project is created for Better Call Ramadan law firm. All rights reserved.
 
 ---
 
-**Built with ❤️ for Better Call Ramadan** 
+**Built with ❤️ for Better Call Ramadan**

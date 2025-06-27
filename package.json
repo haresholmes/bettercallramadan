@@ -1,0 +1,27 @@
+{
+  "name": "better-call-ramadan",
+  "version": "1.0.0",
+  "description": "Modern law firm website for Better Call Ramadan",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "build": "echo 'Static site, no build needed'",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "law-firm",
+    "website",
+    "dubai",
+    "legal",
+    "consulting"
+  ],
+  "author": "Better Call Ramadan",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bettercallramadan/website"
+  },
+  "homepage": "https://bettercallramadan.com"
+} 

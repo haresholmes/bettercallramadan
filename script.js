@@ -69,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cardFounders && cardCorporate) {
         cardFounders.addEventListener("click", () => {
-            setActiveCard(cardFounders, cardCorporate, "Litigation & Disputes");
+            setActiveCard(cardFounders, cardCorporate, "Commercial & Corporate");
         });
 
         cardCorporate.addEventListener("click", () => {
-            setActiveCard(cardCorporate, cardFounders, "Advisory & Enforcement");
+            setActiveCard(cardCorporate, cardFounders, "Disputes & Private Client");
         });
     }
 
@@ -82,62 +82,70 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------------------------------------
     const trackRadios = intakeForm.querySelectorAll('input[name="focus_track"]');
     const urgencyRadios = intakeForm.querySelectorAll('input[name="urgency"]');
-    const jurisdictionSelect = document.getElementById("jurisdiction-select");
     const matterSelect = document.getElementById("matter-select");
 
     const sumTrack = document.getElementById("sum-track");
-    const sumJurisdiction = document.getElementById("sum-jurisdiction");
+    const sumMatter = document.getElementById("sum-matter");
     const sumUrgency = document.getElementById("sum-urgency");
 
     function updateCaseSummary() {
         const isAr = htmlTag.getAttribute("lang") === "ar";
 
-        // Matter Type Selection Mapping
-        const selectedMatter = matterSelect.value;
-        if (selectedMatter === "Commercial Dispute") {
-            sumTrack.textContent = isAr ? "نزاع تجاري" : "Commercial Dispute";
-        } else if (selectedMatter === "Rental Dispute") {
-            sumTrack.textContent = isAr ? "نزاع إيجاري" : "Rental Dispute";
-        } else if (selectedMatter === "Corporate Matter") {
-            sumTrack.textContent = isAr ? "شؤون الشركات" : "Corporate Matter";
-        } else if (selectedMatter === "Execution Proceeding") {
-            sumTrack.textContent = isAr ? "إجراءات تنفيذ" : "Execution Proceeding";
-        } else if (selectedMatter === "Debt Recovery") {
-            sumTrack.textContent = isAr ? "تحصيل ديون" : "Debt Recovery";
-        } else if (selectedMatter === "Property Dispute") {
-            sumTrack.textContent = isAr ? "نزاع عقاري" : "Property Dispute";
-        } else {
-            sumTrack.textContent = isAr ? "استشارة عامة" : "General Consultation";
+        // 1. Focus Track Mapping
+        const selectedTrackEl = intakeForm.querySelector('input[name="focus_track"]:checked');
+        if (selectedTrackEl) {
+            const selectedTrack = selectedTrackEl.value;
+            if (selectedTrack === "Commercial & Corporate") {
+                sumTrack.textContent = isAr ? "الشركات والقانون التجاري" : "Commercial & Corporate";
+            } else {
+                sumTrack.textContent = isAr ? "تسوية المنازعات والأفراد" : "Disputes & Private Client";
+            }
         }
 
-        // Jurisdiction Mapping
-        const selectedJurisdiction = jurisdictionSelect.value;
-        if (selectedJurisdiction.includes("Mainland")) {
-            sumJurisdiction.textContent = isAr ? "محاكم دبي (بر دبي)" : "Mainland Courts";
-        } else if (selectedJurisdiction.includes("Federal")) {
-            sumJurisdiction.textContent = isAr ? "المحاكم الاتحادية" : "Federal Courts";
-        } else if (selectedJurisdiction.includes("DIFC")) {
-            sumJurisdiction.textContent = isAr ? "المناطق الحرة (DIFC)" : "DIFC/ADGM Zones";
-        } else {
-            sumJurisdiction.textContent = isAr ? "استشارة دولية" : "International";
+        // 2. Matter Type Mapping
+        if (matterSelect) {
+            const selectedMatter = matterSelect.value;
+            if (selectedMatter === "Commercial Dispute") {
+                sumMatter.textContent = isAr ? "نزاع تجاري" : "Commercial Dispute";
+            } else if (selectedMatter === "Rental Dispute") {
+                sumMatter.textContent = isAr ? "نزاع إيجاري" : "Rental Dispute";
+            } else if (selectedMatter === "Corporate Matter") {
+                sumMatter.textContent = isAr ? "شؤون الشركات" : "Corporate Matter";
+            } else if (selectedMatter === "Execution Proceeding") {
+                sumMatter.textContent = isAr ? "إجراءات تنفيذ" : "Execution Proceeding";
+            } else if (selectedMatter === "Debt Recovery") {
+                sumMatter.textContent = isAr ? "تحصيل ديون" : "Debt Recovery";
+            } else if (selectedMatter === "Property Dispute") {
+                sumMatter.textContent = isAr ? "نزاع عقاري" : "Property Dispute";
+            } else if (selectedMatter === "Intellectual Property & Licensing") {
+                sumMatter.textContent = isAr ? "الملكية الفكرية والتراخيص" : "Intellectual Property & Licensing";
+            } else if (selectedMatter === "Employment & Labour Dispute") {
+                sumMatter.textContent = isAr ? "نزاع العمل والتوظيف" : "Employment & Labour Dispute";
+            } else {
+                sumMatter.textContent = isAr ? "استشارة عامة" : "General Consultation";
+            }
         }
 
-        // Urgency Mapping
-        const selectedUrgency = intakeForm.querySelector('input[name="urgency"]:checked').value;
-        if (selectedUrgency.includes("Immediate")) {
-            sumUrgency.textContent = isAr ? "إجراء عاجل (١-٧ أيام)" : "Immediate Action";
-            sumUrgency.style.color = "var(--color-juniper)";
-        } else {
-            sumUrgency.textContent = isAr ? "تخطيط استراتيجي" : "Strategic Prep";
-            sumUrgency.style.color = "var(--color-sage)";
+        // 3. Urgency Mapping
+        const selectedUrgencyEl = intakeForm.querySelector('input[name="urgency"]:checked');
+        if (selectedUrgencyEl) {
+            const selectedUrgency = selectedUrgencyEl.value;
+            if (selectedUrgency.includes("Immediate")) {
+                sumUrgency.textContent = isAr ? "إجراء عاجل" : "Immediate Action";
+                sumUrgency.style.color = "var(--color-juniper)";
+            } else {
+                sumUrgency.textContent = isAr ? "تخطيط استراتيجي" : "Strategic Prep";
+                sumUrgency.style.color = "var(--color-sage)";
+            }
         }
     }
 
     // Attach change listeners to form controls
     trackRadios.forEach(radio => radio.addEventListener("change", updateCaseSummary));
     urgencyRadios.forEach(radio => radio.addEventListener("change", updateCaseSummary));
-    jurisdictionSelect.addEventListener("change", updateCaseSummary);
-    matterSelect.addEventListener("change", updateCaseSummary);
+    if (matterSelect) {
+        matterSelect.addEventListener("change", updateCaseSummary);
+    }
 
     // Run initial configuration
     updateCaseSummary();
@@ -145,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sync form radio back to cards highlight
     trackRadios.forEach(radio => {
         radio.addEventListener("change", (e) => {
-            if (e.target.value === "Litigation & Disputes") {
+            if (e.target.value === "Commercial & Corporate") {
                 cardFounders.classList.add("active");
                 cardCorporate.classList.remove("active");
             } else {

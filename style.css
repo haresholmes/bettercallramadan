@@ -166,7 +166,7 @@ html[dir="rtl"] .brand-main {
 }
 
 .lang-switch-btn {
-    display: none;
+    display: inline-block;
     background: none;
     border: 1px solid var(--color-travertine);
     color: var(--color-obsidian);
@@ -1140,6 +1140,10 @@ html[dir="rtl"] .main-nav {
     .container {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+    }
+    .sectors-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
     }
 
     .split-grid {

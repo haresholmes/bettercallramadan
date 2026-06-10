@@ -3,7 +3,19 @@
  * Handles bilingual switching (EN/AR), intake form preview builder, and card selections.
  */
 
+// ----------------------------------------------------
+// GLOBAL PRODUCTION CONFIGURATION
+// ----------------------------------------------------
+const WHATSAPP_NUMBER = "971500000000"; // Replace with production WhatsApp number
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoazaap"; // Formspree ID
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Dynamically set WhatsApp link on load
+    const whatsappBtn = document.querySelector(".whatsapp-floating-btn");
+    if (whatsappBtn) {
+        whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    }
+
     // ----------------------------------------------------
     // 1. Language Toggle System (Bilingual Mirroring)
     // ----------------------------------------------------
@@ -171,35 +183,50 @@ document.addEventListener("DOMContentLoaded", () => {
     intakeForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Gather form data
         const formData = new FormData(intakeForm);
+        const errorNotification = document.getElementById("error-notification");
         
-        // CONFIGURABLE ENDPOINT:
-        // Replace 'placeholder' with your actual Formspree form ID (e.g. 'mvgooojb') or Zoho endpoint URL.
-        const endpoint = "https://formspree.io/f/placeholder"; 
+        // Reset previous alerts
+        successNotification.style.display = "none";
+        if (errorNotification) {
+            errorNotification.style.display = "none";
+        }
 
-        // Start animation fade-out state during post request
+        // Fade form during submission process
         intakeForm.style.transition = "opacity 0.4s ease";
         intakeForm.style.opacity = "0.5";
 
-        fetch(endpoint, {
+        fetch(FORMSPREE_ENDPOINT, {
             method: "POST",
             body: formData,
             headers: {
                 'Accept': 'application/json'
             }
         })
-        .catch(err => {
-            // Graceful fallback for local development or unconfigured backend
-            console.warn("Intake submission endpoint not configured. Seamlessly showing success message on frontend.");
+        .then(response => {
+            if (response.ok) {
+                // Successful submission
+                setTimeout(() => {
+                    intakeForm.style.display = "none";
+                    successNotification.style.display = "block";
+                    successNotification.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }, 400);
+            } else {
+                // Server validation / response error
+                throw new Error("Server responded with error status");
+            }
         })
-        .finally(() => {
+        .catch(err => {
+            console.error("Formspree submission error:", err);
+            // Restore form opacity and display error alert
             setTimeout(() => {
-                intakeForm.style.display = "none";
-                successNotification.style.display = "block";
-                
-                // Scroll subtly to notification
-                successNotification.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                intakeForm.style.opacity = "1";
+                if (errorNotification) {
+                    errorNotification.style.display = "block";
+                    errorNotification.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                } else {
+                    alert("Submission failed. Please try again.");
+                }
             }, 400);
         });
     });

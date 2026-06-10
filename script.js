@@ -13,38 +13,40 @@ document.addEventListener("DOMContentLoaded", () => {
     // Select all elements that require translation
     const translatableElements = document.querySelectorAll("[data-text-en]");
 
-    langToggleBtn.addEventListener("click", () => {
-        const currentLang = htmlTag.getAttribute("lang");
-        const newLang = currentLang === "en" ? "ar" : "en";
-        const isRtl = newLang === "ar";
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener("click", () => {
+            const currentLang = htmlTag.getAttribute("lang");
+            const newLang = currentLang === "en" ? "ar" : "en";
+            const isRtl = newLang === "ar";
 
-        // Update HTML tag attributes for direction and language
-        htmlTag.setAttribute("lang", newLang);
-        htmlTag.setAttribute("dir", isRtl ? "rtl" : "ltr");
+            // Update HTML tag attributes for direction and language
+            htmlTag.setAttribute("lang", newLang);
+            htmlTag.setAttribute("dir", isRtl ? "rtl" : "ltr");
 
-        // Update Toggle button label
-        langToggleBtn.textContent = isRtl ? "EN" : "AR";
+            // Update Toggle button label
+            langToggleBtn.textContent = isRtl ? "EN" : "AR";
 
-        // Loop through and swap text content or placeholders
-        translatableElements.forEach(el => {
-            const translation = isRtl ? el.getAttribute("data-text-ar") : el.getAttribute("data-text-en");
-            
-            if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-                el.placeholder = translation;
-            } else {
-                // If it contains a child with specific design structure, handle differently, else change text
-                const textOnlySpan = el.querySelector(".btn-text");
-                if (textOnlySpan) {
-                    textOnlySpan.textContent = translation;
+            // Loop through and swap text content or placeholders
+            translatableElements.forEach(el => {
+                const translation = isRtl ? el.getAttribute("data-text-ar") : el.getAttribute("data-text-en");
+                
+                if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                    el.placeholder = translation;
                 } else {
-                    el.textContent = translation;
+                    // If it contains a child with specific design structure, handle differently, else change text
+                    const textOnlySpan = el.querySelector(".btn-text");
+                    if (textOnlySpan) {
+                        textOnlySpan.textContent = translation;
+                    } else {
+                        el.textContent = translation;
+                    }
                 }
-            }
-        });
+            });
 
-        // Update Briefing Desk Summary values after language toggle
-        updateCaseSummary();
-    });
+            // Update Briefing Desk Summary values after language toggle
+            updateCaseSummary();
+        });
+    }
 
     // ----------------------------------------------------
     // 2. Audience Selector Interaction (Strategic Split)

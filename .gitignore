@@ -1,0 +1,4 @@
+# Exclude credentials and local secrets
+GITHUB_API.txt
+sudo_password.txt
+.DS_Store

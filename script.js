@@ -99,14 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Jurisdiction
         const selectedJurisdiction = jurisdictionSelect.value;
-        if (selectedJurisdiction.includes("DIFC")) {
-            sumJurisdiction.textContent = isAr ? "مركز دبي المالي العالمي" : "DIFC Chambers";
-        } else if (selectedJurisdiction.includes("ADGM")) {
-            sumJurisdiction.textContent = isAr ? "سوق أبوظبي العالمي" : "ADGM Chambers";
+        if (selectedJurisdiction.includes("Mainland")) {
+            sumJurisdiction.textContent = isAr ? "محاكم دبي (بر دبي)" : "Mainland Courts";
         } else if (selectedJurisdiction.includes("Federal")) {
-            sumJurisdiction.textContent = isAr ? "بر دبي الرئيسي" : "UAE Mainland";
+            sumJurisdiction.textContent = isAr ? "المحاكم الاتحادية" : "Federal Courts";
+        } else if (selectedJurisdiction.includes("DIFC")) {
+            sumJurisdiction.textContent = isAr ? "مركز دبي المالي" : "DIFC/ADGM Zones";
         } else {
-            sumJurisdiction.textContent = isAr ? "عابر للحدود" : "Cross-Border";
+            sumJurisdiction.textContent = isAr ? "استشارة دولية" : "International";
         }
 
         // Urgency

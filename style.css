@@ -184,6 +184,15 @@ html[dir="rtl"] .brand-main {
     border-color: var(--color-obsidian);
 }
 
+/* Language Visibility Rules */
+html[lang="en"] .lang-ar-only {
+    display: none !important;
+}
+html[lang="ar"] .lang-en-only {
+    display: none !important;
+}
+
+
 .cta-button-nav {
     text-decoration: none;
     background-color: var(--color-obsidian);

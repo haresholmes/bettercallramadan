@@ -870,6 +870,251 @@ html[dir="rtl"] .footer-tagline {
 }
 
 /* ==========================================================================
+   CREDIBILITY, REPRESENTATIVE MATTERS & LAWYER PROFILE
+   ========================================================================== */
+
+.credibility-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid var(--color-travertine);
+    position: relative;
+    z-index: 10;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--color-travertine);
+}
+
+.metric-card {
+    padding: 3rem 2rem;
+    background-color: var(--color-chalk);
+    border-right: 1px solid var(--color-travertine);
+    text-align: center;
+    transition: background-color var(--transition-medium);
+}
+
+.metric-card:last-child {
+    border-right: none;
+}
+
+.metric-card:hover {
+    background-color: var(--color-paper-hover);
+}
+
+.metric-num {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    color: var(--color-juniper);
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+html[dir="rtl"] .metric-num {
+    font-family: var(--font-arabic-serif);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-obsidian);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.metric-desc {
+    font-size: 0.85rem;
+    color: var(--color-sage);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* Representative Matters */
+.matters-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid var(--color-travertine);
+    position: relative;
+    z-index: 10;
+}
+
+.matters-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-travertine);
+}
+
+.matter-row {
+    display: grid;
+    grid-template-columns: 0.3fr 1.7fr 1fr;
+    padding: 2.5rem 3rem;
+    background-color: var(--color-chalk);
+    border-bottom: 1px solid var(--color-travertine);
+    align-items: start;
+    transition: background-color var(--transition-medium);
+}
+
+.matter-row:last-child {
+    border-bottom: none;
+}
+
+.matter-row:hover {
+    background-color: var(--color-paper-hover);
+}
+
+.matter-num {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-juniper);
+}
+
+.matter-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--color-obsidian);
+    padding-inline-end: 2rem;
+}
+
+.matter-scope {
+    font-size: 0.85rem;
+    color: var(--color-sage);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    text-align: right;
+}
+
+html[dir="rtl"] .matter-scope {
+    text-align: left;
+}
+
+/* Lawyer Profile Section */
+.profile-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid var(--color-travertine);
+    position: relative;
+    z-index: 10;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.profile-portrait-col {
+    position: relative;
+}
+
+.portrait-frame {
+    border: 1px solid var(--color-travertine);
+    padding: 1rem;
+    background-color: var(--color-chalk);
+}
+
+.profile-portrait {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(102%);
+    border: 1px solid var(--color-travertine);
+    transition: filter var(--transition-slow);
+}
+
+.profile-portrait:hover {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.profile-text-col {
+    padding-top: 1rem;
+}
+
+.profile-bio-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--color-obsidian);
+    margin-bottom: 1.5rem;
+}
+
+html[dir="rtl"] .profile-bio-title {
+    font-family: var(--font-arabic-serif);
+}
+
+.profile-bio-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-sage);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+.profile-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    border-top: 1px solid var(--color-travertine);
+    padding-top: 2rem;
+}
+
+.profile-meta-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border-bottom: 1px solid rgba(226, 223, 216, 0.4);
+    padding-bottom: 1rem;
+}
+
+.profile-meta-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.profile-meta-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-juniper);
+    font-weight: 600;
+}
+
+.profile-meta-value {
+    font-size: 0.9rem;
+    color: var(--color-obsidian);
+    line-height: 1.6;
+}
+
+.profile-meta-valueul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.profile-meta-valueul li {
+    position: relative;
+    padding-inline-start: 1rem;
+}
+
+.profile-meta-valueul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--color-juniper);
+}
+
+html[dir="rtl"] .profile-meta-valueul li::before {
+    left: auto;
+    right: 0;
+}
+
+/* ==========================================================================
    BILINGUAL (RTL) CONFIGURATION
    ========================================================================== */
 
@@ -930,6 +1175,34 @@ html[dir="rtl"] .hero-image-col {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+    }
+    /* New UI additions responsive rules */
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .metric-card {
+        border-bottom: 1px solid var(--color-travertine);
+    }
+    .metric-card:nth-child(2n) {
+        border-right: none;
+    }
+    .metric-card:nth-child(3), .metric-card:nth-child(4) {
+        border-bottom: none;
+    }
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .matter-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 2rem;
+    }
+    .matter-scope {
+        text-align: left;
+    }
+    html[dir="rtl"] .matter-scope {
+        text-align: right;
     }
 }
 

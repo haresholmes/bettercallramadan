@@ -1,6 +1,6 @@
 /**
- * BETTER CALL RAMADAN — INTERACTIVE FUNCTIONALITY
- * Handles bilingual switching (EN/AR), intake form preview builder, and tab selections.
+ * MOHAMED RAMADAN — INTERACTIVE FUNCTIONALITY
+ * Handles bilingual switching (EN/AR), intake form preview builder, and card selections.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update Toggle button label
         langToggleBtn.textContent = isRtl ? "EN" : "AR";
 
-        // Loop through and swap text content or inputs
+        // Loop through and swap text content or placeholders
         translatableElements.forEach(el => {
             const translation = isRtl ? el.getAttribute("data-text-ar") : el.getAttribute("data-text-en");
             
@@ -67,11 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cardFounders && cardCorporate) {
         cardFounders.addEventListener("click", () => {
-            setActiveCard(cardFounders, cardCorporate, "Founders & Creators");
+            setActiveCard(cardFounders, cardCorporate, "Litigation & Disputes");
         });
 
         cardCorporate.addEventListener("click", () => {
-            setActiveCard(cardCorporate, cardFounders, "Corporations & Investors");
+            setActiveCard(cardCorporate, cardFounders, "Advisory & Enforcement");
         });
     }
 
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const trackRadios = intakeForm.querySelectorAll('input[name="focus_track"]');
     const urgencyRadios = intakeForm.querySelectorAll('input[name="urgency"]');
     const jurisdictionSelect = document.getElementById("jurisdiction-select");
+    const matterSelect = document.getElementById("matter-select");
 
     const sumTrack = document.getElementById("sum-track");
     const sumJurisdiction = document.getElementById("sum-jurisdiction");
@@ -89,27 +90,37 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateCaseSummary() {
         const isAr = htmlTag.getAttribute("lang") === "ar";
 
-        // Track Name
-        const selectedTrack = intakeForm.querySelector('input[name="focus_track"]:checked').value;
-        if (selectedTrack === "Founders & Creators") {
-            sumTrack.textContent = isAr ? "المؤسسون والمبدعون" : "Founders & Creators";
+        // Matter Type Selection Mapping
+        const selectedMatter = matterSelect.value;
+        if (selectedMatter === "Commercial Dispute") {
+            sumTrack.textContent = isAr ? "نزاع تجاري" : "Commercial Dispute";
+        } else if (selectedMatter === "Rental Dispute") {
+            sumTrack.textContent = isAr ? "نزاع إيجاري" : "Rental Dispute";
+        } else if (selectedMatter === "Corporate Matter") {
+            sumTrack.textContent = isAr ? "شؤون الشركات" : "Corporate Matter";
+        } else if (selectedMatter === "Execution Proceeding") {
+            sumTrack.textContent = isAr ? "إجراءات تنفيذ" : "Execution Proceeding";
+        } else if (selectedMatter === "Debt Recovery") {
+            sumTrack.textContent = isAr ? "تحصيل ديون" : "Debt Recovery";
+        } else if (selectedMatter === "Property Dispute") {
+            sumTrack.textContent = isAr ? "نزاع عقاري" : "Property Dispute";
         } else {
-            sumTrack.textContent = isAr ? "الشركات والمستثمرون" : "Corporations & Investors";
+            sumTrack.textContent = isAr ? "استشارة عامة" : "General Consultation";
         }
 
-        // Jurisdiction
+        // Jurisdiction Mapping
         const selectedJurisdiction = jurisdictionSelect.value;
         if (selectedJurisdiction.includes("Mainland")) {
             sumJurisdiction.textContent = isAr ? "محاكم دبي (بر دبي)" : "Mainland Courts";
         } else if (selectedJurisdiction.includes("Federal")) {
             sumJurisdiction.textContent = isAr ? "المحاكم الاتحادية" : "Federal Courts";
         } else if (selectedJurisdiction.includes("DIFC")) {
-            sumJurisdiction.textContent = isAr ? "مركز دبي المالي" : "DIFC/ADGM Zones";
+            sumJurisdiction.textContent = isAr ? "المناطق الحرة (DIFC)" : "DIFC/ADGM Zones";
         } else {
             sumJurisdiction.textContent = isAr ? "استشارة دولية" : "International";
         }
 
-        // Urgency
+        // Urgency Mapping
         const selectedUrgency = intakeForm.querySelector('input[name="urgency"]:checked').value;
         if (selectedUrgency.includes("Immediate")) {
             sumUrgency.textContent = isAr ? "إجراء عاجل (١-٧ أيام)" : "Immediate Action";
@@ -124,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     trackRadios.forEach(radio => radio.addEventListener("change", updateCaseSummary));
     urgencyRadios.forEach(radio => radio.addEventListener("change", updateCaseSummary));
     jurisdictionSelect.addEventListener("change", updateCaseSummary);
+    matterSelect.addEventListener("change", updateCaseSummary);
 
     // Run initial configuration
     updateCaseSummary();
@@ -131,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sync form radio back to cards highlight
     trackRadios.forEach(radio => {
         radio.addEventListener("change", (e) => {
-            if (e.target.value === "Founders & Creators") {
+            if (e.target.value === "Litigation & Disputes") {
                 cardFounders.classList.add("active");
                 cardCorporate.classList.remove("active");
             } else {

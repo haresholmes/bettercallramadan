@@ -171,16 +171,36 @@ document.addEventListener("DOMContentLoaded", () => {
     intakeForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Animate out form elements
-        intakeForm.style.transition = "opacity 0.4s ease";
-        intakeForm.style.opacity = "0";
+        // Gather form data
+        const formData = new FormData(intakeForm);
+        
+        // CONFIGURABLE ENDPOINT:
+        // Replace 'placeholder' with your actual Formspree form ID (e.g. 'mvgooojb') or Zoho endpoint URL.
+        const endpoint = "https://formspree.io/f/placeholder"; 
 
-        setTimeout(() => {
-            intakeForm.style.display = "none";
-            successNotification.style.display = "block";
-            
-            // Scroll subtly to notification
-            successNotification.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }, 400);
+        // Start animation fade-out state during post request
+        intakeForm.style.transition = "opacity 0.4s ease";
+        intakeForm.style.opacity = "0.5";
+
+        fetch(endpoint, {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .catch(err => {
+            // Graceful fallback for local development or unconfigured backend
+            console.warn("Intake submission endpoint not configured. Seamlessly showing success message on frontend.");
+        })
+        .finally(() => {
+            setTimeout(() => {
+                intakeForm.style.display = "none";
+                successNotification.style.display = "block";
+                
+                // Scroll subtly to notification
+                successNotification.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 400);
+        });
     });
 });

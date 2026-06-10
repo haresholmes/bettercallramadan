@@ -1217,3 +1217,123 @@ html[dir="rtl"] .main-nav {
         gap: 1.5rem;
     }
 }
+
+/* ==========================================================================
+   REFRACTORED SYSTEM CLASSES (Inline style migration)
+   ========================================================================== */
+
+.grid-open {
+    border: none !important;
+    background: transparent !important;
+}
+
+.item-open {
+    border: none !important;
+    background: transparent !important;
+}
+
+.metrics-grid-open {
+    gap: 2.5rem;
+}
+
+.metric-card-open {
+    text-align: start;
+    padding: 1.5rem 0;
+}
+
+.item-first-open {
+    padding-inline-start: 0;
+}
+
+.item-last-open {
+    padding-inline-end: 0;
+}
+
+.expertise-grid-borderless {
+    border-top: none;
+}
+
+.expertise-item-flex {
+    flex: 1;
+}
+
+.expertise-item-last {
+    border-right: none;
+}
+
+.sectors-section-layout {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    border-bottom: 1px solid var(--color-travertine);
+}
+
+.sectors-header-margin {
+    margin-bottom: 3rem;
+}
+
+.sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 4rem;
+}
+
+.sectors-grid h4 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-juniper);
+}
+
+.sectors-grid p {
+    font-size: 0.85rem;
+    color: var(--color-sage);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.list-open {
+    border: none !important;
+    background: transparent !important;
+}
+
+.row-open {
+    background: transparent !important;
+    padding: 2rem 0;
+}
+
+.profile-leadership-title {
+    display: block;
+    font-size: 1.15rem;
+    color: var(--color-sage);
+    margin-top: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+}
+
+/* Floating WhatsApp Widget */
+.whatsapp-floating-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-juniper);
+    color: var(--color-chalk);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.whatsapp-floating-btn:hover {
+    background-color: var(--color-obsidian);
+    transform: scale(1.05);
+}
+
+html[dir="rtl"] .whatsapp-floating-btn {
+    right: auto;
+    left: 40px;
+}
